@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up </title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/db9b13a773.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container" id="mainCatList">
+        <div id="logo123">
+            <a href="#">
+                <img class="logo" src="img/logo.png">
+            </a>
+            <a class="BackButton">
+                <i v-if="step > 1" class="fas fa-arrow-left" v-on:click="Back(step)"></i>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="login-container">
+                <div class="position-relative">
+                    <div id="wizard-box">
+                        <form method="post" action="#" id="sign-up-form" target="_top" novalidate="novalidate"></form>
+                        <div class="space-6"></div>
+                        <div class="step1 wizardStepsBox" style="display: block;">
+                            <div class="progresStep">
+                                <div :class="step == 1 ? 'active' : step<=3 ? 'greenC' : 'disabled'" v-on:click="stepN(1)"><i v-if="step>1" class="fas fa-check"></i> Step 1</div>
+                                <div :class="step == 2 ? 'active' : step==3 ? 'greenC' : 'disabled'" v-on:click="stepN(2)"><i v-if="step>2" class="fas fa-check"></i>Step 2</div>
+                                <div :class="step == 3 ? 'active' : 'disabled'" v-on:click="stepN(3)">Step 3</div>
+                            </div>
+                            <div class="row" v-if="step == 1">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <span class="questionHeader">What type of website do you want?</span>
+                                    <br>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-4 col-md-3" v-for="(list, i) in lists">
+                                                <div class="BoxList well" v-on:click="selectIcon(i)">
+                                                    <i :class="list.icon"></i>
+                                                    <span> {{ list.name }} </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row step2" v-if="step == 2">
+                                <div class="col-xs-12  col-sm-12 col-md-12">
+                                    <span class="questionHeader">Add your {{selectedName}} name</span>
+                                    <br>
+                                    <div class="wizardSteps">
+                                        <div style="align-items: center; text-align: center;margin-top: 50px;">
+                                            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12" style="margin: 0 auto;">
+                                                <div class="form-group">
+                                                    <input type="text" name="websiteName" :placeholder="selectedPlcholder">
+                                                </div>
+                                                <div class="NextButton Text-center">
+                                                    <button type="submit" class="btn btn-success btn-lg moveToStep3" v-on:click="started">Go to final step</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row step3" v-if="step == 3">
+                                <div class="col-xs-12  col-sm-12 col-md-12">
+                                    <span class="questionHeader">Let's get started!</span>
+                                    <br>
+                                    <div class="wizardSteps">
+                                        <div style="align-items: center; text-align: center;margin-top: 50px;">
+                                            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12" style="margin-top: 30px;">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <label class="block">
+                                                            <span class="block input-icon input-icon-right">
+                                                                <input type="text" name="name" id="name" placeholder="Your name" data-msg-required="Please provide a name.">
+                                                                <i class="ace-icon fas fa-user"></i>
+                                                            </span>
+                                                        </label>
+                                                        <label class="block">
+                                                            <span class="block input-icon input-icon-right">
+                                                                <input type="text" name="email" id="email" placeholder="Email" data-msg-required="Please provide an email address.">
+                                                                <i class="ace-icon fas fa-envelope"></i>
+                                                            </span>
+                                                        </label>
+                                                        <label class="block">
+                                                            <span class="block input-icon input-icon-right">
+                                                                <input type="password" name="password" id="password" placeholder="Create a password" data-msg-required="Please provide a password.">
+                                                                <i class="ace-icon fas fa-lock"></i>
+                                                            </span>
+                                                        </label>
+                                                        <div class="NextButton Text-center">
+                                                            <button type="submit" class="btn btn-success btn-lg">Start my website</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="socialBox">
+                                        <div class="text-center" style="display: flex; flex-direction: column; align-items: center;">
+                                            <a class="facebookLogin">
+                                                <div class="socialLoginBun row">
+                                                    <div class="left col-md-2 col-sm-2 col-lg-2">
+                                                        <div class="text-center">
+                                                            <i aria-hidden="true" class="fa fa-facebook"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right col-xs-10 col-md-10 col-lg-10 col-sm-10" style="background-color: #fff; color: #4264b2; border-left: 1px solid #4264b2;">
+                                                        <div class="text-center">Sign-up with Facebook</div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="googleLogin">
+                                                <div class="socialLoginBun row">
+                                                    <div class="left col-md-2 col-sm-2 col-lg-2">
+                                                        <div class="text-center">
+                                                            <i class="fab fa-google"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right col-md-10 col-lg-10 col-sm-10" style="background-color: #fff; color: #ea4335; border-left: 1px solid #ea4335;">
+                                                        <div class="text-center">Sign-up with Google</div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="text-center" style="padding-top: 30px; color: #858f9691; margin: auto;width: 400px;">
+                                        *By signing up, you agree to our
+                                        <a data-target="#termsModal" data-toggle="modal" href="#">Terms of Use</a>
+                                    </div>
+                                </div>
+                                <div class="space-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
