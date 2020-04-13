@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/db9b13a773.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="container" id="register">
+            <nav class="navbar theme-nav">
+                <a href="index.html" class="navbar-brand"><img src="img/logo1.jpg"></a>
+                <div>
+                    <ul class="menu">
+                        <li class="nav-item"><a href="index.html">Homepage</a></li>
+                        <li class="nav-item"><a href="#">Pricing</a></li>
+                        <li class="nav-item"><a href="#">reviews</a></li>
+                        <li class="nav-item"><a href="#">Support</a></li>
+                        <li class="nav-item"><a href="#">|</a></li>
+                        <li class="nav-item"><a href="#">Login</a></li>
+                        <li class="nav-item"><a href="register.html">Start here</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="select">
+                <div class="row" v-if="step == 1">
+                    <div class="col-xs-12 col-sm-12 col-md-9" id="Box">
+                        <span class="questionHeader animated fadeInLeft">What type of website do you want?</span>
+                        <br>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-4 col-md-3 " v-for="(list, i) in lists">
+                                    <div class="BoxList well animated fadeInDown" v-on:click="selectIcon(i)">
+                                        <i :class="list.icon"></i>
+                                        <span> {{ list.name }} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row step2" v-if="step == 2">
+                    <div class="col-xs-12  col-sm-12 col-md-12">
+                        <span class="questionHeader animated fadeInLeft">Add your {{selectedName}} name</span>
+                        <br>
+                        <div class="wizardSteps">
+                            <div class="row" style="align-items: center;">
+                                <div class="col-xs-12 col-md-6 col-sm-12 col-lg-6 contact contact animated fadeInLeft">
+                                    <div class="selected">
+                                        <div class="input-group mb-4">
+                                            <input type="text" class="form-control" :placeholder="selectedPlcholder" aria-label="" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="NextButton Text-center">
+                                            <button type="submit" class="btn btn-success btn-lg moveToStep3" v-on:click="started">Go to final step</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <img src="img/step2.png" style="margin-top: 10px; width: inherit;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row step3" v-if="step == 3">
+                    <div class="col-xs-12  col-sm-12 col-md-12">
+                        <span class="questionHeader animated fadeInRight">Let's get started!</span>
+                        <br>
+                        <div class="wizardSteps">
+                            <div style="align-items: center; text-align: center;">
+                                <div class="col-xs-12">
+                                    <div class="row" style="padding-right: 20px;padding-left: 20px;">
+                                        <div class="col-xs-12 col-md-5 col-lg-5 contact animated fadeInLeft" style="padding-top: 5px;">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="ace-icon fas fa-user"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Your name" aria-label="Your name" aria-describedby="basic-addon2">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="ace-icon fas fa-envelope"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" name="email" id="email" placeholder="Email" aria-label="Email" class="form-control">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="ace-icon fas fa-lock"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="password" name="password" id="password" placeholder="Create a password" aria-label="Create a password" class="form-control">
+                                            </div>
+                                            <div class="NextButton Text-center">
+                                                <button type="submit" class="btn btn-success">Start my website</button>
+                                            </div>
+                                            <div class="socialBox">
+                                                <div class="text-center row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;">
+                                                        <div class="left col-sm-2 social1">
+                                                            <div class="text-center">
+                                                                <i aria-hidden="true" class="fa fa-facebook"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right col-sm-10 social1" style="border-left: 0">
+                                                            <div class="text-center">
+                                                                Sign-up with Facebook
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="left col-sm-2 col-md-2 social">
+                                                            <div class="text-center">
+                                                                <i class="fab fa-google"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right col-sm-10 col-md-10 social" style="border-left: 0">
+                                                            <div class="text-center">
+                                                                Sign-up with Google
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-lg-7 contact">
+                                            <img src="img/step32.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding-top: 30px; color: #858f9691;width: 400px; margin-left: 27px;">
+                                *By signing up, you agree to our
+                                <a data-target="#termsModal" data-toggle="modal" href="#">Terms of Use</a>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6 right">
+                    <div class="stepper container">
+                        <div class="step">
+                            <div :class="step == 1 ? 'active' : step<=3 ? 'greenC' : 'disabled'" v-on:click="stepN(1)" id="stepperN"></div>
+                            <div :class="step == 2 ? 'active' : step==3 ? 'greenC' : 'disabled'" v-on:click="stepN(2)" id="stepperN"></div>
+                            <div :class="step == 3 ? 'active' : 'disabled'" v-on:click="stepN(3)" id="stepperN"></div>
+                            <h6 id="stepperN"> {{ step }} / 3</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="js/main.js"></script>
+</body>
+
+</html>
